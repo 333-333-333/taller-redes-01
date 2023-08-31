@@ -4,9 +4,6 @@
 
 # Importing libraries
 import socket
-import threading
-import sys
-import os
 import time
 
 # Inicializating TCP socket on port 30303
@@ -28,13 +25,10 @@ def ask_user():
 def format_request(string, character):
     return string + ';' + character
 
-
-
 # Sends the request to the server
 def send_request(client, request):
     # Sends the request
     client.send(request.encode('utf-8'))
-
 
 # Recieves the response from the server
 def recieve_response(client):

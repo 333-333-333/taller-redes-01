@@ -4,10 +4,6 @@
 
 # Importing libraries
 import socket
-import threading
-import sys
-import os
-import time
 
 # Inicializating TCP socket on port 30303R
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
