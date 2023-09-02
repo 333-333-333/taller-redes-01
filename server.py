@@ -68,7 +68,7 @@ def process_response(request):
         # Removes the character from the string
         response = remove_char(parsed[0], parsed[1])
 
-            # If the request is not valid, sends an error message
+    # If the request is not valid, sends an error message
     else:
         # Sends the error message
         response =  "Error: invalid request"
