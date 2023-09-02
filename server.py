@@ -58,6 +58,23 @@ def parse_request(request):
     # Returns the array
     return parsed
 
+# Once defined al the steps for processing the response, let's create a method 
+# that ressumes all of that.
+def process_response(request):
+    valid = validate_request(request)
+    if valid:
+        # Parses the request
+        parsed = parse_request(request)
+        # Removes the character from the string
+        response = remove_char(parsed[0], parsed[1])
+
+            # If the request is not valid, sends an error message
+    else:
+        # Sends the error message
+        response =  "Error: invalid request"
+    
+    return response
+
 # Starts a while loop that is always waiting for a client. If a client 
 # connects, recieves the request, validates it, and sends the response
 def start_server():
@@ -68,22 +85,12 @@ def start_server():
         
         # Recieves the request
         request = recieve_request(client)
-        # Validates the request
-        valid = validate_request(request)
-        
-        # If the request is valid, sends the response
-        if valid:
-            # Parses the request
-            parsed = parse_request(request)
-            # Removes the character from the string
-            response = remove_char(parsed[0], parsed[1])
-            # Sends the response
-            send_response(client, response)
-        
-        # If the request is not valid, sends an error message
-        else:
-            # Sends the error message
-            send_response(client, "Error: invalid request")
+
+        # Processes the request
+        response = process_response(request)
+
+        # Sends the response to the client
+        send_response(client, response)
         
         # Closes the connection
         client.close()
